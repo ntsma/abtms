@@ -1,0 +1,151 @@
+
+{% include "heading.html" %}
+
+<body class="profile-page sidebar-collapse">
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/abtms/modules/">
+          ABTms </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" onclick="scrollToDownload()">
+              {{ user[0].name }}
+            </a>
+          </li>
+          <li class="nav-item">
+            {% if user[0].type == "user" %}
+              <a class="nav-link" href="/abtms/settings/pf/" onclick="scrollToDownload()">
+                <i class="material-icons">settings</i> Configurações
+              </a>
+            {% endif %}
+            {% if user[0].type == "bussiness" %}
+              <a class="nav-link" href="/abtms/settings/pj/" onclick="scrollToDownload()">
+                <i class="material-icons">settings</i> Configurações
+              </a>
+            {% endif %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/abtms/logout/" onclick="scrollToDownload()">
+              <i class="material-icons">exit_to_app</i> Sair
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header header-filter" data-parallax="true" style="background-color: #00FFFF">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand text-center">
+            <h1><img src="{{ url_for('static', filename='imgs/logo.png')}}"></h1>
+            <h3 class="title text-center">Associação Brasileira de Telemedicina e Telessaúde</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+        <h2 class="title">Pagamento Pelo Cartão</h2>
+      </div>
+
+      <div class="row">
+        {% if session["type"] == "pessoa"%}
+          <div class="col-md-12">
+            <span class="badge badge-danger">Aviso</span>
+          </div>
+          <div class="col-md-12">
+            <span>Antes de pagar com cartão de crédito, verifique se você tem direito a algum desconto oferecido como estudante.</span>
+          </div>
+          <div class="col-md-12">
+            <span>Caso seja estudante, vá à seção <strong>Anexar Declaração de Estudante</strong> e envie-nos o comprovante de vínculo estudantil.</span>
+          </div>
+        {% endif %}
+        <div class="col-md-12">
+          <span>Sua situação atual é
+            {% if session["type"] == "pessoa" %}
+              {% if user[0].studentType == "gra" %}
+                <strong>Estudante de Graduação</strong>, portanto a anuidade será <strong>R$ 56.60</strong>.
+              {% endif %}
+              {% if user[0].studentType == "pos" %}
+                <strong>Estudante de Pós-Graduação</strong>, portanto a anuidade será <strong>R$ 81.50</strong>.
+              {% endif %}
+              {% if user[0].studentType == "nd" %}
+                <strong>Pessoa Física</strong> sem desconto, portanto a anuidade será <strong>R$ 156.50</strong>.
+              {% endif %}
+            {% endif %}
+            {% if session["type"] == "empresa" %}
+              <strong>Pessoa Jurídica</strong>, portanto a anuidade será <strong>R$ 506.50</strong>.
+            {% endif %}
+
+          </span>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <form method="POST" action="/abtms/payment/creditcard/">
+            <input type="hidden" id="token" name="token">
+            <input type="hidden" id="charge_id" name="charge_id" value="{{ charge_id }}">
+
+            <div class="form-group">
+              <label for="brand">Marca</label>
+              <select class="form-control selectpicker" data-style="btn btn-link" id="brand">
+                <option value="visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="number">Número do Cartão</label>
+              <input type="text" id="number" class="form-control" value="4012001038443335">
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" class="form-control" value="123">
+
+            </div>
+
+            <div class="form-group">
+              <label for="month">Mês</label>
+              <input type="text" id="month" class="form-control" value="05">
+            </div>
+
+            <div class="form-group">
+              <label for="year">Ano</label>
+              <input type="text" id="year" class="form-control" value="2018">
+            </div>
+
+            <div class="input-group">
+              <button type="submit" onclick="generateToken();" class="btn btn-primary btn-success">Pagar</button>
+              <a href="/abtms/members/" class="btn btn-primary btn-info">Cancelar</a>
+
+            </div>
+
+          </form> <!-- end form -->
+
+
+        </div> <!-- end .col -->
+      </div><!-- end .row -->
+
+    </div><!-- end .container -->
+  </div><!-- end .main -->
+
+<script src="{{ url_for('static', filename='js/payment.js') }}"></script>
+
+{% include "footer.html" %}

@@ -1,0 +1,311 @@
+
+{% include "heading.html" %}
+
+
+<script>
+var fileInputTextDiv = document.getElementById('file_input_text_div');
+var fileInput = document.getElementById('file_input_file');
+var fileInputText = document.getElementById('file_input_text');
+
+fileInput.addEventListener('change', changeInputText);
+fileInput.addEventListener('change', changeState);
+
+function changeInputText() {
+  var str = fileInput.value;
+  var i;
+  if (str.lastIndexOf('\\')) {
+    i = str.lastIndexOf('\\') + 1;
+  } else if (str.lastIndexOf('/')) {
+    i = str.lastIndexOf('/') + 1;
+  }
+  fileInputText.value = str.slice(i, str.length);
+}
+
+function changeState() {
+  if (fileInputText.value.length != 0) {
+    if (!fileInputTextDiv.classList.contains("is-focused")) {
+      fileInputTextDiv.classList.add('is-focused');
+    }
+  } else {
+    if (fileInputTextDiv.classList.contains("is-focused")) {
+      fileInputTextDiv.classList.remove('is-focused');
+    }
+  }
+}
+</script>
+<body class="profile-page sidebar-collapse">
+
+
+  <div class="page-header header-filter" data-parallax="true" style="background-color: #00FFFF">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand text-center">
+            <h1>Associados</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+        <span class="badge badge-success"><h6>Você está registrado.</h6></span>
+        <h2 class="title">Você pode</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Gerar Boleto de Pagamento</h4>
+                        <p class="category">
+
+                        </p>
+                    </div>
+                    <div class="card-body">
+
+<div class="input-group">
+  <span class="badge badge-warning">Aviso</span>
+</div>
+
+<div class="input-group">
+  <h4>Estudante Graduação - R$ 56.50</h4>
+  <h4>Estudante Pós Graduação - R$ 81.50</h4>
+  <h4>Pessoa Física - R$ 156.50</h4>
+  <h4>Pessoa Jurídica- R$ 506.50</h4>
+</div>
+
+
+                      <div class="row">
+                        <div class="col-md-10">
+                          <p>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Gerar</button>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                </div>
+      </div> <!-- end .row -->
+
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Carregar Declaração de Estudante</h4>
+                        <p class="category"></p>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-10">
+                          <p>
+                            <form action="/abtms/documents/studentStatement/" method="post" enctype="multipart/form-data">
+                              <div class="file_input_div">
+    <div class="file_input">
+      <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+        <i class="material-icons">file_upload</i>
+        <input id="file_input_file" name="studentStatement" class="none" type="file" />
+      </label>
+    </div>
+  </div>
+
+                              <button type="submit" class="btn btn-success">Carregar</button>
+                            </form>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+            </div>
+      </div>
+
+      <div class="row">
+        <h2>Registro de Pagamentos</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Pago em</th>
+              <th scope="col">Válido até</th>
+              <th scope="col">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Eduardo S Vieira</td>
+              <td>24/01/2019</td>
+              <td>24/01/2020</td>
+              <td>RS 100</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="row">
+        <h2>Boletos Gerados</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Gerado em</th>
+              <th scope="col">Válido até</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Baixar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>24/01/2019</td>
+              <td>24/01/2020</td>
+              <td>RS 100</td>
+              <td><a href="#">Baixar</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+
+
+<!--
+      <div class="row">
+        <h2>Congressos</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Bootstrap</td>
+              <td>Curso para Iniciantes</td>
+              <td>RS 100</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Bootstrap</td>
+              <td>Curso para Iniciantes</td>
+              <td>RS 100</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Bootstrap</td>
+              <td>Curso para Iniciantes</td>
+              <td>RS 100</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="row">
+        <h2>Publicações</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Bootstrap</td>
+              <td>Curso para Iniciantes</td>
+              <td>RS 100</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Bootstrap</td>
+              <td>Curso para Iniciantes</td>
+              <td>RS 100</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Bootstrap</td>
+              <td>Curso para Iniciantes</td>
+              <td>RS 100</td>
+            </tr>
+          </tbody>
+        </table>
+http://127.0.0.1:8000/abtms/members/
+      </div>
+
+      <div class="row">
+        <h2>Boletos</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Bootstrap</td>
+              <td>Curso para Iniciantes</td>
+              <td>RS 100</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Bootstrap</td>
+              <td>Curso para Iniciantes</td>
+              <td>RS 100</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Bootstrap</td>
+              <td>Curso para Iniciantes</td>
+              <td>RS 100</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+-->
+    </div>
+  </div>
+
+{% include "footer.html" %}

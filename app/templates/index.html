@@ -1,0 +1,112 @@
+
+{% include "heading.html" %}
+
+<body class="landing-page sidebar-collapse">
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/abtms/">
+          ABTms </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="/abtms/login/" onclick="scrollToDownload()">
+              Entrar
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/abtms/signup/" onclick="scrollToDownload()">
+              Cadastrar-se
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Siga-nos Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Curta-nos Facebook">
+              <i class="fa fa-facebook-square"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Siga-nos Instagram">
+              <i class="fa fa-instagram"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url({{ url_for('static', filename='imgs/computer-food-fruit-204686.jpg') }})">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="title"><img src="{{ url_for('static', filename='imgs/logo.png')}}"></h1>
+          <h4>Assosiação Brasileira de Telemedicina e Telessaúde</h4>
+          <br>
+          <a href="https://www.youtube.com/watch?v=Z6k1WrTacXU" target="_blank" class="btn btn-info btn-raised btn-lg">
+            <i class="fa fa-play"></i> Assista ao vídeo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="title">Missão</h2>
+            <h5 class="description">
+              Promover o intercâmbio de conhecimento e experiências entre as entidades públicas e privadas, comunidade técnico-científica e organismos internacionais atuantes no âmbito da Telemedicina e Telessaúde, fomentando a disseminação de boas práticas e o fortalecimento do ensino e da pesquisa em prol de toda a sociedade brasileira.
+            </h5>
+          </div>
+        </div>
+        <div class="features">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-info">
+                  <i class="material-icons">search</i>
+                </div>
+                <h4 class="info-title">Pesquisa</h4>
+                <p>Estimular pesquisas, estudos, cursos para o público em geral, cursos de pós-graduação e de extensão universitária, programas de educação continuada para todos os tipos de profissionais em Telemedicina e Telessaúde por meio de reuniões, conferências, jornadas, simpósios e congressos com a finalidade de aproximar seus membros e divulgar o que for de interesse.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-success">
+                  <i class="material-icons">assignment_turned_in</i>
+                </div>
+                <h4 class="info-title">Diretrizes</h4>
+                <p>Congregar médicos, profissionais da saúde e outros, bem como entidades e organizações de qualquer natureza jurídica, que se interessam pela Telemedicina e Telessaúde para propor, analisar, estimular e lutar por normas técnicas, éticas e profissionais em Telemedicina e Telessaúde, junto aos órgãos competentes de direito, a fim de facilitar e aprimorar a prática da Telemedicina e Telessaúde no Brasil e no exterior.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-danger">
+                  <i class="material-icons">favorite</i>
+                </div>
+                <h4 class="info-title">Colaborativo</h4>
+                <p>Estabelecer convênios com entidades internacionais para representar a Telemedicina e Telessaúde brasileira junto a esses órgãos internacionais desenvolvendo ações conjuntas com instituições ou órgãos governamentais nacionais e internacionais para promover a melhora da saúde ou fomento de atividades científicas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% include "footer.html" %}

@@ -1,0 +1,241 @@
+
+{% include "heading.html" %}
+
+<body class="profile-page sidebar-collapse">
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/abtms/modules/">
+          ABTms </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" onclick="scrollToDownload()">
+              {{ user[0].name }}
+            </a>
+          </li>
+          <li class="nav-item">
+            {% if user[0].type == "user" %}
+              <a class="nav-link" href="/abtms/settings/pf/" onclick="scrollToDownload()">
+                <i class="material-icons">settings</i> Configurações
+              </a>
+            {% endif %}
+            {% if user[0].type == "bussiness" %}
+              <a class="nav-link" href="/abtms/settings/pj/" onclick="scrollToDownload()">
+                <i class="material-icons">settings</i> Configurações
+              </a>
+            {% endif %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/abtms/logout/" onclick="scrollToDownload()">
+              <i class="material-icons">exit_to_app</i> Sair
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header header-filter" data-parallax="true" style="background-color: #00FFFF">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand text-center">
+            <h1><img src="{{ url_for('static', filename='imgs/logo.png')}}"></h1>
+            <h3 class="title text-center">Associação Brasileira de Telemedicina e Telessaúde</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+        <h2 class="title">Módulos</h2>
+      </div>
+
+      <div class="row">
+
+       <!-- {% if tam == 1 %}
+            <div class="col-md-6">
+              <a href="/abtms/members/">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Associação</h4>
+                        <p class="category"></p>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-10">
+                          <p>Módulo de Associados</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </a>
+            </div>
+
+        {% endif %} -->
+
+        {% for row in user %}
+          {% if row["modules.name"] == "Associação" %}
+            <div class="col-md-6">
+              <a href="/abtms/members/">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Associação</h4>
+                        <p class="category"></p>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-10">
+                          <p>Módulo de Associados</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </a>
+            </div>
+
+          {% endif %}
+
+
+          {% if row["modules.name"] == "Administrador" %}
+           <div class="col-md-6">
+            <a href="/abtms/admin/">
+              <div class="card">
+                  <div class="card-header card-header-info">
+                      <h4 class="card-title">Administrador</h4>
+                      <p class="category"></p>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-10">
+                        <p>Módulo de Administração</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </a>
+          </div>
+
+          {% endif %}
+
+           {% if row["modules.name"] == "Financeiro" %}
+                <div class="col-md-6">
+                  <a href="/abtms/members/">
+                    <div class="card">
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title">Financeiro</h4>
+                            <p class="category"></p>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-10">
+                              <p>Módulo de Financeiro</p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+           {% endif %}
+
+             {% if row["modules.name"] == "Gerenciador de Cursos" %}
+                <div class="col-md-6">
+                  <a href="/abtms/members/">
+                    <div class="card">
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title">Gerenciador de Cursos</h4>
+                            <p class="category"></p>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-10">
+                              <p>Módulo de Gerenciador de Cursos</p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+
+           {% endif %}
+
+            {% if row["modules.name"] == "Gerenciador de Congressos" %}
+                <div class="col-md-6">
+                  <a href="/abtms/members/">
+                    <div class="card">
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title">Gerenciador de Congressos</h4>
+                            <p class="category"></p>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-10">
+                              <p>Módulo de Gerenciador de Congressos</p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+
+           {% endif %}
+
+
+          {% if row["modules.name"] == "Gerenciador de Publicações" %}
+                <div class="col-md-6">
+                  <a href="/abtms/members/">
+                    <div class="card">
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title">Gerenciador de Publicações</h4>
+                            <p class="category"></p>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-10">
+                              <p>Módulo de Gerenciador de Publicações</p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+
+           {% endif %}
+
+            {% if row["modules.name"] == "Comunicação" %}
+                <div class="col-md-6">
+                  <a href="/abtms/members/">
+                    <div class="card">
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title">Comunicação</h4>
+                            <p class="category"></p>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-10">
+                              <p>Módulo de Comunicação</p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+
+           {% endif %}
+
+        {% endfor %}
+
+    </div>
+  </div>
+
+{% include "footer.html" %}

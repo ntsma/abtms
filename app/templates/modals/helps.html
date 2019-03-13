@@ -1,0 +1,99 @@
+<!-- modal de criação de conta -->
+<!-- Modal -->
+<!--
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Novo Pedido de Ajuda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form" method="POST" action="/coaprendiz/helps/">
+         <div class="card-body">
+
+           <label for="">Título</label>
+           <input type="text" name="title" class="form-control">
+
+           <label for="">Descrição</label>
+           <input type="text" name="description" class="form-control">
+
+           <label for="">Habilidades</label>
+           <select name="skills" class="form-control selectpicker" data-style="btn btn-link" id="skills">
+           </select>
+
+           <label for="">Tópicos</label>
+           <input name="topics" type="text" class="form-control">
+         </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Criar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+-->
+
+<!-- modal para geração de boleto de pagamento -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Gerar Boleto de Pagamento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/abtms/payment/" method="post">
+
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+              {% if session["type"] == "pessoa"%}
+                <div class="col-md-12">
+                  <span class="badge badge-danger">Aviso</span>
+                </div>
+                <div class="col-md-12">
+                  <span>Antes de gerar o seu boleto, verifique se você tem direito a algum desconto oferecido como estudante.</span>
+                </div>
+                <div class="col-md-12">
+                  <span>Caso seja estudante, vá à seção <strong>Anexar Declaração de Estudante</strong> abaixo e envie-nos o comprovante de vínculo estudantil.</span>
+                </div>
+              {% endif %}
+              <div class="col-md-12">
+                <span>Sua situação atual é
+                  {% if session["type"] == "pessoa" %}
+                    {% if user[0].studentType == "gra" %}
+                      <strong>Estudante de Graduação</strong>, portanto a anuidade será <strong>R$ 56.60</strong>.
+                    {% endif %}
+                    {% if user[0].studentType == "pos" %}
+                      <strong>Estudante de Pós-Graduação</strong>, portanto a anuidade será <strong>R$ 81.50</strong>.
+                    {% endif %}
+                    {% if user[0].studentType == "nd" %}
+                      <strong>Pessoa Física</strong> sem desconto, portanto a anuidade será <strong>R$ 156.50</strong>.
+                    {% endif %}
+                  {% endif %}
+                  {% if session["type"] == "empresa" %}
+                    <strong>Pessoa Jurídica</strong>, portanto a anuidade será <strong>R$ 506.50</strong>.
+                  {% endif %}
+
+                </span>
+              </div>
+
+
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button id="btnCreateB" type="submit" class="btn btn-primary btn-success">Gerar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

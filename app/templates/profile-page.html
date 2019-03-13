@@ -1,0 +1,81 @@
+{% include "heading.html" %}
+
+<body class="profile-page sidebar-collapse">
+  {% include "main-menu.html" %}
+
+  <div class="page-header header-filter" data-parallax="true" style="background-color: black;"></div>
+  <div class="main main-raised">
+    <div class="profile-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto mr-auto">
+            <div class="profile">
+              <div class="avatar">
+                <img src="{{ url_for('static', filename='imgs/eduardo.jpg') }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+              </div>
+              <div class="name">
+                <h3 class="title">{{ user.name }}</h3>
+                <h6>Cientista da Computação</h6>
+                <a href="#pablo" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
+                <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#pablo" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="description text-center">
+          <p>Eduardo é Técnica em Informática pelo Instituto Federal de Educação, Ciência e Tecnológia do Maranhão e está graduando-se em Ciência da Computação pela Universidade Federal do Maranhão.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5"></div>
+          <div class="col-md-7">
+            <button id="btnCreateHelp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Nova Ajuda
+            </button>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div>
+            <div class="profile-tabs">
+              <h2>Pedidos de Ajuda</h2>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Habilidade</th>
+                    <th scope="col">Tópicos</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Remover</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for help in helps %}
+                    <tr>
+                      <th scope="row">{{ help._id }}</th>
+                      <td>{{ help.title }}</td>
+                      <td>{{ help.description }}</td>
+                      <td>{{ help.status }}</td>
+                      <td>{{ help.skills }}</td>
+                      <td>{{ help.topics }}</td>
+                      <td><a href=""><i class="material-icons right">edit</i></a></td>
+                      <td><a href=""><i class="material-icons right">delete</i></a></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+{% include "modals/helps.html" %}
+{% include "footer.html" %}
+<script src="{{ url_for('static', filename='js/profile-page.js') }}" type="text/javascript"></script>
